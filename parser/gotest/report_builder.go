@@ -92,7 +92,13 @@ func (b *reportBuilder) ProcessEvent(ev Event) {
 		b.CreateBuildError(ev.Name)
 	case "output":
 		if ev.Package != "" {
-			b.getPackageBuilder(ev.Package).Output(ev.Data)
+			pb := b.getPackageBuilder(ev.Package)
+			testName, _, _ := strings.Cut(ev.Data, " ")
+			id, found := pb.findTest(testName)
+			if !found {
+				id, _ = pb.findTest(ev.Name)
+			}
+			pb.Output(id, ev.Data)
 		} else {
 			b.output.Append(ev.Data)
 		}
@@ -443,8 +449,8 @@ func (b *packageBuilder) Coverage(pct float64, packages []string) {
 }
 
 // Output appends data to the output of this package.
-func (b *packageBuilder) Output(data string) {
-	b.output.Append(data)
+func (b *packageBuilder) Output(id int, data string) {
+	b.output.AppendToID(id, data)
 }
 
 // findTest returns the id of the most recently created test with the given
