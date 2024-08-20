@@ -10,13 +10,13 @@ import (
 	"os"
 	"strings"
 
-	"github.com/jstemmer/go-junit-report/v2/internal/gojunitreport"
-	"github.com/jstemmer/go-junit-report/v2/parser/gotest"
+	"github.com/thogarty/go-junit-report/v2/internal/gojunitreport"
+	"github.com/thogarty/go-junit-report/v2/parser/gotest"
 )
 
 // Current release information printed by the -version flag.
 var (
-	Version   = "v2.2.0-dev"
+	Version   = "v0.1.2"
 	Revision  = "HEAD"
 	BuildTime string
 )

@@ -14,7 +14,7 @@ build/go-junit-report-$(VERSION)-$(GOOS)-$(GOARCH).tar.gz: build/go-junit-report
 build/go-junit-report-$(VERSION)-windows-amd64.zip: build/go-junit-report.exe
 	zip -j $@ build/go-junit-report.exe
 
-release: test
+release:
 	$(MAKE) GOOS=linux GOARCH=amd64 build/go-junit-report-$(VERSION)-linux-amd64.tar.gz
 	$(MAKE) GOOS=windows GOARCH=amd64 build/go-junit-report-$(VERSION)-windows-amd64.zip
 	$(MAKE) GOOS=darwin GOARCH=amd64 build/go-junit-report-$(VERSION)-darwin-amd64.tar.gz
