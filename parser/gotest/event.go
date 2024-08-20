@@ -34,4 +34,5 @@ func (e *Event) applyMetadata(m *reader.Metadata) {
 		return
 	}
 	e.Package = m.Package
+	e.Name = m.Test
 }

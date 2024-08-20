@@ -17,6 +17,7 @@ type LineReader interface {
 // Metadata contains metadata that belongs to a line.
 type Metadata struct {
 	Package string
+	Test    string
 }
 
 // LimitedLineReader reads lines from an io.Reader object with a configurable
@@ -117,6 +118,6 @@ func (r *JSONEventReader) ReadLine() (string, *Metadata, error) {
 			// Skip events without output
 			continue
 		}
-		return strings.TrimSuffix(event.Output, "\n"), &Metadata{Package: event.Package}, nil
+		return strings.TrimSuffix(event.Output, "\n"), &Metadata{Package: event.Package, Test: event.Test}, nil
 	}
 }
